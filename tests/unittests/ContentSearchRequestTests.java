@@ -1,18 +1,25 @@
+package unittests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import api.contentRetrival.impl.requests.ContentSearchRequest;
-import api.contentRetrival.impl.requests.TagSearchRequest;
-import api.contentRetrival.types.ResultType;
 
+
+/** 
+ * This set of tests ensure that {@link ContentSearchRequest} objects work as expected
+ * @author 120010516
+ *
+ */
 public class ContentSearchRequestTests {
 	private static ContentSearchRequest r;
 
+	
+	
 	@Before
 	public void init() {
-		r = new ContentSearchRequest("facebook");
+		r = new ContentSearchRequest("facebook"); // reinitilaising before every test
 	}
 
 	@Test
@@ -53,7 +60,8 @@ public class ContentSearchRequestTests {
 	public void testChangingPageIndex() {
 		r.setPageIndex(10);
 		assertEquals(10, r.getPageIndex());
-		String expected = "http://content.guardianapis.com/search?q=facebook&page=10&format=json&page-size=50&show-fields=all";
+		String expected = "http://content.guardianapis.com/search?q=facebook&page=10" +
+				"&format=json&page-size=50&show-fields=all";
 		assertEquals(expected, r.getURLAsText());
 
 	}
