@@ -1,8 +1,9 @@
-package restful;
+package api.restful;
 
 import java.io.InputStream;
 
-import restful.exceptions.RestFulClientException;
+import api.restful.exceptions.RestFulClientException;
+
 
 /**
  * This is an interface to the implementation of clients, interfacing with

@@ -1,6 +1,6 @@
-package restful.exceptions;
+package api.restful.exceptions;
 
-import restful.IRESTFULClient;
+import api.restful.IRESTFULClient;
 
 /**
  * Exception class which purpose is to indicate any problems with

@@ -1,4 +1,4 @@
-package restful;
+package api.restful;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -12,7 +12,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import restful.exceptions.RestFulClientException;
+import api.restful.exceptions.RestFulClientException;
+
 
 /**
  * 
