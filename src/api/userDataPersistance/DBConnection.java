@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Observable;
 
-import org.apache.http.auth.InvalidCredentialsException;
 import org.codehaus.jackson.JsonNode;
 
 import utils.WebUtils;
@@ -20,6 +19,7 @@ import api.restful.exceptions.RestFulClientException;
 import api.userDataPersistance.interfaces.IDBConnection;
 import api.userDataPersistance.interfaces.IPreference;
 import exceptions.ExistingUserException;
+import exceptions.InvalidCredentialsException;
 
 /**
  * An implementation of the {@link IDBConnection} interface, this class was
@@ -379,7 +379,7 @@ public class DBConnection extends Observable implements IDBConnection {
 	}
 
 	@Override
-	public void addAnnotation(Annotation annotation)
+	public void addAnnotation(IAnnotation annotation)
 			throws RestFulClientException {
 		this.createBagIfNotThere("Annotations");
 

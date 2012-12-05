@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 import org.apache.http.auth.InvalidCredentialsException;
 
-import api.contentRetrival.impl.results.Annotation;
 import api.contentRetrival.interfaces.IAnnotation;
 import api.contentRetrival.interfaces.IResultItem;
 import api.restful.exceptions.RestFulClientException;
@@ -130,14 +129,16 @@ public interface IDBConnection {
 	 *            the username
 	 * @param password
 	 *            the password
-	 * @throws InvalidCredentialsException
-	 *             in case the credentials were invalid
+	 * 
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
+	 * @throws exceptions.InvalidCredentialsException
+	 *             in case the credentials were invalid
 	 */
 	void login(String user, String password)
-			throws InvalidCredentialsException, RestFulClientException;
+			throws InvalidCredentialsException, RestFulClientException,
+			exceptions.InvalidCredentialsException;
 
 	/**
 	 * This method creates a bag with the specified name in the database
@@ -192,7 +193,7 @@ public interface IDBConnection {
 	 *             in case something went wrong with the connection to the
 	 *             database
 	 */
-	void addAnnotation(Annotation annotation) throws RestFulClientException;
+	void addAnnotation(IAnnotation annotation) throws RestFulClientException;
 
 	/**
 	 * This method retrieves all the annotations for a particular item given its
@@ -215,15 +216,18 @@ public interface IDBConnection {
 	 */
 	String getLoggedUser();
 
-	/** 
-	 * Given a name of a bag, create it in the database if and only if it is not existing already
+	/**
+	 * Given a name of a bag, create it in the database if and only if it is not
+	 * existing already
+	 * 
 	 * @param bagName
 	 * @throws RestFulClientException
 	 */
 	void createBagIfNotThere(String bagName) throws RestFulClientException;
 
-	/** 
+	/**
 	 * Given a nema of a Bag, create it in the database
+	 * 
 	 * @param jsonData
 	 * @param bagName
 	 * @throws RestFulClientException
