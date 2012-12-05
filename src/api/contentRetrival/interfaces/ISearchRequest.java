@@ -58,7 +58,7 @@ public interface ISearchRequest {
 	/**
 	 * Retrieves the current page index of the request
 	 * 
-	 * @return
+	 * @return {@link Integer}
 	 */
 	public int getPageIndex();
 }

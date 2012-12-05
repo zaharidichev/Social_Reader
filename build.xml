@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SocialArticleReader" default="build" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<!-- The properties that will be used across this buildfile                                      
+	-->
+	<property name="srcDir" value="src" />
+	<property name="buildDir" value="build" />
+	<property name="docDir" value="doc" />
+	<property name="distDir" value="dist" />
+	<property name="jarfile" value="socialReader.jar" />
+	<property name="libDir" value="lib" />
+
+
+	<!--  The classpath -->
+	<path id="class.path">
+		<pathelement path="${buildDir}/classes" />
+		<fileset dir="${libDir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+
+
+	<!-- Compiles all the source -->
+	<target name="build" depends="-init" description="compiles the code">
+		<javac srcdir="${srcDir}" destdir="${buildDir}/classes" classpathref="class.path" debug="true" includeantruntime="false" />
+	</target>
+
+
+	<!--Packages the system into a jar-->
+	<target name="jar" depends="-init,build" description="produces a jar file">
+		<jar destfile="${distDir}/${jarfile}" basedir="${buildDir}/classes" />
+	</target>
+
+
+	<!-- Builds documentation-->
+	<target name="javadoc" description="creates the Javadoc">
+		<javadoc author="true" classpathref="class.path" destdir="doc" sourcepath="src" />
+	</target>
+
+	<!--This target stars up te application -->
+	<target name="run" depends="-init,build" description="runs the system">
+		<java classname="gui.StartApplication" classpathref="class.path" fork="true" />
+	</target>
+
+	<!--Performs the tests-->
+	<target name="test" depends="build" description="executes the tests">
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<path refid="class.path" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<batchtest>
+				<fileset dir="${buildDir}/classes" includes="tests/**/*.class">
+				<exclude name="**/*$*.class"/> <!-- very important to exclude the anonymous mock objects so tests dont fails-->
+				</fileset>
+
+			</batchtest>
+		</junit>
+	</target>
+
+
+	<!--Downloads all the JAR files needed to run the system and the tests-->
+	<target name="retrieve" depends="-init,-install-ivy" description="Downloads all the dependencies">
+		<ivy:retrieve />
+	</target>
+
+
+
+	<!--Cleans up everything tat was retreived and created-->
+	<target name="clean" description="cleans up the directory structure">
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${buildDir}" />
+			<fileset dir="${docDir}" />
+			<fileset dir="${distDir}" />
+			<fileset dir="${libDir}" includes="*.jar" />
+		</delete>
+	</target>
+
+
+	<!--A very clever way of combining tasks (credit to A. Voss and his build file)s-->
+	<target name="-init" depends="-mkdirs,-install-ivy">
+	</target>
+
+	<!--Creates the initial directory structure-->
+	<target name="-mkdirs">
+		<mkdir dir="${buildDir}/classes" />
+		<mkdir dir="${distDir}" />
+		<mkdir dir="${docDir}" />
+		<mkdir dir="${libDir}" />
+	</target>
+
+
+
+
+	<property name="ivy.jar.dir" value="${libDir}" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+	<property name="ivy.install.version" value="2.2.0" />
+
+	<!--Retrieves the Ivy jar file-->
+	<available file="${ivy.jar.file}" property="skip.download" />
+	<target name="-download-ivy" depends="-mkdirs" unless="skip.download">
+		<mkdir dir="${ivy.jar.dir}" />
+		<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true" />
+	</target>
+
+	<!--Make the tasks that the ivy.jar file contains available in this Ant build. (Credit to A. Voss)-->
+	<target name="-install-ivy" depends="-mkdirs,-download-ivy">
+		<path id="ivy.lib.path">
+			<pathelement location="${ivy.jar.file}" />
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+	</target>
+
+
+
+
+</project>

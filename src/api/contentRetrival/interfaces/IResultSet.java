@@ -45,7 +45,7 @@ public interface IResultSet {
 	 * ones currently held in the buffer od the {@link IResultSet} and
 	 * technically correspond to a single page of results
 	 * 
-	 * @return
+	 * @return {@link LinkedList}
 	 */
 	public LinkedList<IResultItem> getResultItems();
 

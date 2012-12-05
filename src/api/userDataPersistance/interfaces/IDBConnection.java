@@ -26,7 +26,7 @@ public interface IDBConnection{
 	 * 
 	 * @param bagName
 	 *            {@link String} the name of the bag
-	 * @return
+	 * @return {@link Boolean}
 	 * @throws RestFulClientException
 	 */
 	boolean doesBagExist(String bagName) throws RestFulClientException;
@@ -37,7 +37,7 @@ public interface IDBConnection{
 	 * 
 	 * @param username
 	 *            {@link StringIndexOutOfBoundsException} the username
-	 * @return
+	 * @return {@link Boolean}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -52,7 +52,7 @@ public interface IDBConnection{
 	 *            the ID
 	 * @param user
 	 *            the username
-	 * @return
+	 * @return {@link Boolean}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -66,7 +66,7 @@ public interface IDBConnection{
 	 * 
 	 * @param username
 	 *            the username
-	 * @return
+	 * @return {@link LinkedList}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -83,7 +83,7 @@ public interface IDBConnection{
 	 *            the username
 	 * @param password
 	 *            the password
-	 * @return
+	 * @return {@link Boolean}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -112,7 +112,7 @@ public interface IDBConnection{
 	 *            the {@link UID} of the article
 	 * @param type
 	 *            {@link PreferenceType} the type that we are looking for
-	 * @return
+	 * @return {@link Integer}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -200,7 +200,7 @@ public interface IDBConnection{
 	 * 
 	 * @param UID
 	 *            the ID of the item
-	 * @return
+	 * @return {@link LinkedList}
 	 * @throws RestFulClientException
 	 *             in case something went wrong with the connection to the
 	 *             database
@@ -211,7 +211,7 @@ public interface IDBConnection{
 	/**
 	 * Retrieves the logged user
 	 * 
-	 * @return the name of the user
+	 * @return  {@link String} the name of the user
 	 */
 	String getLoggedUser();
 

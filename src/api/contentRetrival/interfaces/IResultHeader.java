@@ -13,21 +13,21 @@ public interface IResultHeader {
 	/**
 	 * Retrieves the total number of results
 	 * 
-	 * @return
+	 * @return {@link Integer}
 	 */
 	public int getNumberOfResults();
 
 	/**
 	 * Retrives the number of pages
 	 * 
-	 * @return
+	 * @return {@link Integer}
 	 */
 	public int getNumberOfPages();
 
 	/**
 	 * Retrieves the status of the response
 	 *  
-	 * @return
+	 * @return {@link String}
 	 */
 	public String getStatus();
 

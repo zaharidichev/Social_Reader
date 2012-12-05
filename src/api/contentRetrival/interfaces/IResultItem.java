@@ -38,7 +38,7 @@ public interface IResultItem {
 	 * Returns the HTTP adress that is the link to this article (Not to the
 	 * RestFUL interface, but the WEB one).
 	 * 
-	 * @return
+	 * @return {@link String}
 	 */
 
 	public String getLink();

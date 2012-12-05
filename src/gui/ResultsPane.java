@@ -27,7 +27,7 @@ public class ResultsPane extends JPanel {
 
 	private static final long serialVersionUID = -5961855958524760651L;
 
-	private JList<Object> sampleJList; // a jlist of all results
+	private JList sampleJList; // a jlist of all results
 	private LinkedList<IResultItem> items; // all the items
 	private DisplayPane display; // the display pane
 
@@ -43,7 +43,7 @@ public class ResultsPane extends JPanel {
 		this.display = displayPane;
 
 		//setting up the appearance of the list
-		sampleJList = new JList<Object>();
+		sampleJList = new JList();
 		sampleJList.setVisibleRowCount(5);
 		sampleJList.setBackground(Color.DARK_GRAY);
 		sampleJList.setForeground(Color.GREEN);
@@ -84,7 +84,7 @@ public class ResultsPane extends JPanel {
 	public void update(LinkedList<IResultItem> items) {
 		this.items = items;
 		Object[] textArray = items.toArray();
-		ListModel<Object> lmodel = new DefaultComboBoxModel<Object>(textArray); // updating the model of the list
+		ListModel lmodel = new DefaultComboBoxModel(textArray); // updating the model of the list
 
 		this.sampleJList.setModel(lmodel);
 

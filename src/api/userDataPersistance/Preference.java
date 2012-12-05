@@ -19,7 +19,7 @@ public class Preference implements IPreference {
 	/**
 	 * Constructor providing the arguments to build a {@link Preference}
 	 * 
-	 * @param itemUID
+	 * @param  itemUID
 	 *            // the id of the item
 	 * @param user
 	 *            // the user who expresses this preference
