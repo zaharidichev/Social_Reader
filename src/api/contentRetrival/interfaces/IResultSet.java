@@ -2,6 +2,8 @@ package api.contentRetrival.interfaces;
 
 import java.util.LinkedList;
 
+import api.restful.exceptions.RestFulClientException;
+
 /**
  * An interface to the implementation of result sets. Result sets are entities
  * that establish a connection with a database and retrieve information from it.
@@ -18,16 +20,18 @@ public interface IResultSet {
 	 * Employs the same ideas as the getNextPage() but it updates the currenly
 	 * held data with the data from the previous page (if there is a previous
 	 * page)
+	 * @throws RestFulClientException 
 	 */
 
-	public void getPrevPage();
+	public void getPrevPage() throws RestFulClientException;
 
 	/**
 	 * Method that forwards to the next page by issuing a new search request and
 	 * updating the currently contained information within the result set with
 	 * the new results.
+	 * @throws RestFulClientException 
 	 */
-	public void getNextPage();
+	public void getNextPage() throws RestFulClientException;
 
 	/**
 	 * Returns the index number of the current page

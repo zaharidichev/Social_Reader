@@ -3,12 +3,10 @@ package api.contentRetrival.impl.results;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-
-import exceptions.InvalidDateException;
 
 import api.contentRetrival.interfaces.IResultItem;
 import api.contentRetrival.types.ItemType;
+import exceptions.InvalidDateException;
 
 /**
  * An implementation of {@link IResultItem}. this class is used to create
