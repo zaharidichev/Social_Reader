@@ -3,13 +3,12 @@ package api.userDataPersistance.interfaces;
 import java.rmi.server.UID;
 import java.util.LinkedList;
 
-import org.apache.http.auth.InvalidCredentialsException;
-
 import api.contentRetrival.interfaces.IAnnotation;
 import api.contentRetrival.interfaces.IResultItem;
 import api.restful.exceptions.RestFulClientException;
 import api.userDataPersistance.PreferenceType;
 import exceptions.ExistingUserException;
+import exceptions.InvalidCredentialsException;
 
 /**
  * This is an interface to the implementation of a database connections. The
@@ -20,7 +19,7 @@ import exceptions.ExistingUserException;
  * @author 120010516
  * 
  */
-public interface IDBConnection {
+public interface IDBConnection{
 
 	/**
 	 * Given a name of a Bag, it checks whether the bag exists in the database

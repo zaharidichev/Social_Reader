@@ -14,22 +14,35 @@ import javax.swing.event.ListSelectionListener;
 
 import api.contentRetrival.interfaces.IResultItem;
 
+/**
+ * This class is responsible for rendering all the results that are being
+ * returned from a search request. It takes as a reference a {@link DisplayPane}
+ * in order to be able to send a particular item of interest to it for detailed
+ * rendering
+ * 
+ * @author 120010516
+ * 
+ */
 public class ResultsPane extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5961855958524760651L;
 
-	private JList<Object> sampleJList;
-	private LinkedList<IResultItem> items;
-	private DisplayPane display;
+	private JList<Object> sampleJList; // a jlist of all results
+	private LinkedList<IResultItem> items; // all the items
+	private DisplayPane display; // the display pane
 
+	/**
+	 * Constructor that initialises all the needed variables and injects the
+	 * single dependency
+	 * 
+	 * @param displayPane
+	 */
 	public ResultsPane(DisplayPane displayPane) {
 
 		super();
 		this.display = displayPane;
 
+		//setting up the appearance of the list
 		sampleJList = new JList<Object>();
 		sampleJList.setVisibleRowCount(5);
 		sampleJList.setBackground(Color.DARK_GRAY);
@@ -38,12 +51,14 @@ public class ResultsPane extends JPanel {
 		sampleJList.setFont(displayFont);
 		this.add(sampleJList);
 
+		//adding a listener that will take care of updating the display pane when the user clich on a particular item of interest
 		sampleJList.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					try {
+						// sending the item to the display pane
 						IResultItem item = items.get(sampleJList
 								.getSelectedIndex());
 						display.renderContent(item);
@@ -60,15 +75,21 @@ public class ResultsPane extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 	}
 
+	/**
+	 * This method is used for refreshing the result list. It is used when a new
+	 * search is conducted or when the pages are flipped.
+	 * 
+	 * @param items
+	 */
 	public void update(LinkedList<IResultItem> items) {
 		this.items = items;
 		Object[] textArray = items.toArray();
-		ListModel<Object> lmodel = new DefaultComboBoxModel<Object>(textArray);
+		ListModel<Object> lmodel = new DefaultComboBoxModel<Object>(textArray); // updating the model of the list
 
 		this.sampleJList.setModel(lmodel);
 
 		this.sampleJList.repaint();
-		this.repaint();
+		this.repaint(); // repainting the componenet
 
 	}
 

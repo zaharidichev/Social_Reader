@@ -1,6 +1,11 @@
 package utils;
 import api.contentRetrival.types.ResultType;
 
+/** 
+ * A generic settings class that hold important constants
+ * @author 120010516
+ *
+ */
 public class Settings {
 
 	private static final String contentApiAdress = "http://content.guardianapis.com/";
