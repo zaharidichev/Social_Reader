@@ -3,8 +3,6 @@ package unittests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,6 +13,7 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import utils.Utils;
 import api.contentRetrival.impl.results.ArticleResultItem;
 import api.contentRetrival.impl.results.TagResultItem;
 import api.contentRetrival.impl.results.factories.ResultItemFactory;
@@ -41,24 +40,7 @@ public class ResultItemFactoryTestswithMocking {
 
 	private final Mockery context = new JUnit4Mockery(); // the mockery
 
-	/*
-	 * Convinience method to read the json data from disk
-	 */
-	private byte[] getMockResponse(String path) {
-		File file = new File(path);
-		char[] chars = new char[(int) file.length()];
-		FileReader reader = null;
-		try {
-			reader = new FileReader(file);
 
-			reader.read(chars);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return new String(chars).getBytes();
-
-	}
 
 	private IRESTFULClient mockClient; // the mock restful client
 	private InputStream mockDataResult; // the mock response data that is read from disk
@@ -79,7 +61,7 @@ public class ResultItemFactoryTestswithMocking {
 	public void createMocks(String mockData) throws RestFulClientException,
 			IOException {
 
-		mockDataResult = new ByteArrayInputStream(getMockResponse(mockData));
+		mockDataResult = new ByteArrayInputStream(Utils.getMockResponse(mockData));
 		mockClient = context.mock(IRESTFULClient.class); // the mock tag requestked client
 		mockArticleRequest = context.mock(ISearchRequest.class,
 				"mockArticleRequest"); //the mock article request
