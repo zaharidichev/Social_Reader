@@ -29,7 +29,7 @@ import api.restful.exceptions.RestFulClientException;
  * This class contains test that ensure the functionality of
  * {@link ResultItemFactory} works ass expected. For the purpose mocks of
  * {@link InputStream} data objects are created forom external text files.
- * Additionally mock os {@link ISearchRequest} are used along with mocks of
+ * Additionally mock of {@link ISearchRequest} are used along with mocks of
  * {@link IRESTFULClient}
  * 
  * @author 120010516

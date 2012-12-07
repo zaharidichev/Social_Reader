@@ -20,28 +20,28 @@ import api.restful.exceptions.RestFulClientException;
  */
 public class GuardianReaderModel extends Observable {
 
-	int pages; //stores the total number of pages
-	int currentpage; //stores the current page
-
-	IResultSet results; //stores the result set
+	private IResultSet results; //stores the result set
+	private ResultSetFactory factory; // stores the ResultSet Factory
 
 	/**
 	 * Public constructor that creates the model and establishes any needed
-	 * conncetions
+	 * Connections. Additionally the constructor takes in the factory that is
+	 * used for generation {@link ResultSet} objects
 	 * 
 	 * @throws RestFulClientException
 	 */
-	public GuardianReaderModel() throws RestFulClientException {
+	public GuardianReaderModel(ResultSetFactory resultSetFactory)
+			throws RestFulClientException {
+		this.factory = resultSetFactory;
 		ISearchRequest request = new ContentSearchRequest(""); // get an empty search request
-		this.results = ResultSetFactory.getResultSet(request); //get a resultset for this request just to start with something
+		this.results = this.factory.getResultSet(request); //get a resultset for this request just to start with something
 		//notify observers that the state has changed
 		this.setChanged();
 		this.notifyObservers();
-		this.currentpage = 1; //set the current page to 1
 	}
 
 	/**
-	 * A public method that retrives all the current results
+	 * A public method that retries all the current results
 	 * 
 	 * @return {@link LinkedList} with {@link IResultItem} obejcts
 	 */
@@ -86,7 +86,7 @@ public class GuardianReaderModel extends Observable {
 	 */
 	public void searchForContent(ISearchRequest request)
 			throws RestFulClientException {
-		this.results = ResultSetFactory.getResultSet(request);
+		this.results = this.factory.getResultSet(request);
 		//notify observers so interface can be updated accordingly
 		this.setChanged();
 		this.notifyObservers();

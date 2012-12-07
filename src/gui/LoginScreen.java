@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
 import model.GuardianReaderModel;
+import api.contentRetrival.impl.results.factories.ResultSetFactory;
 import api.restful.RESTFULContentClient;
 import api.restful.exceptions.RestFulClientException;
 import api.userDataPersistance.DBConnection;
@@ -106,7 +107,8 @@ public class LoginScreen extends JFrame {
 					//if successful, create a new main frame with the guardian model and the current connection
 					setVisible(false);
 					try {
-						new MainAppFrame(new GuardianReaderModel(), connection);
+						ResultSetFactory factory = new ResultSetFactory();
+						new MainAppFrame(new GuardianReaderModel(factory), connection);
 					} catch (RestFulClientException e1) {
 						
 						new InfoForUser(e1.getMessage());

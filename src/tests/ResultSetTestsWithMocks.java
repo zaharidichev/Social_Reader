@@ -128,7 +128,7 @@ public class ResultSetTestsWithMocks {
 	}
 
 	/**
-	 * Tests the retreival of the previous page. Again in this case nothing
+	 * Tests the retrieval of the previous page. Again in this case nothing
 	 * should change since there are no previous pages. This is critical
 	 * functionality that overcomes the problem of reaching either ends of a
 	 * piece of Json data

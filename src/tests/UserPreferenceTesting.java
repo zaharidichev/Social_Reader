@@ -11,7 +11,7 @@ import api.userDataPersistance.interfaces.IPreference;
  * Class to test the functionality of the {@link Preference} objects. It is
  * mostly getters
  * 
- * @author zahari
+ * @author 120010516
  * 
  */
 public class UserPreferenceTesting {

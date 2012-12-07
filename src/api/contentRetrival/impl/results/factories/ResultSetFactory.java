@@ -9,12 +9,20 @@ import api.restful.RESTFULContentClient;
 import api.restful.exceptions.RestFulClientException;
 
 /**
- * A static factory that abstract away the creation of result sets
+ * A factory that abstract away the creation of result sets. It is useful for
+ * injecting into models (MD pattern)
+ * 
  * 
  * @author 120010516
  * 
  */
 public class ResultSetFactory {
+
+	/**
+	 * Just an empty default constructor for the result factory
+	 */
+	public ResultSetFactory() {
+	}
 
 	/**
 	 * This method returns a new {@link IResultSet} object for a particular
@@ -27,7 +35,7 @@ public class ResultSetFactory {
 	 *             in case something along the restful interfacing goes terribly
 	 *             wrong
 	 */
-	public static IResultSet getResultSet(ISearchRequest request)
+	public IResultSet getResultSet(ISearchRequest request)
 			throws RestFulClientException {
 		//handling all the dependency injections here...
 		IRESTFULClient client = new RESTFULContentClient();
