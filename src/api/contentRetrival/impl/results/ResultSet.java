@@ -82,20 +82,15 @@ public class ResultSet implements IResultSet {
 		return this.currentPage;
 	}
 
-	/*
-	 * Convenience method allowing to determine whether there are lesser pages
-	 */
-	private boolean hasLess() {
+	@Override
+	public boolean hasLess() {
 		if ((this.currentPage - 1) < 1)
 			return false;
 		return true;
 	}
 
-	/*
-	 * same as above but works in reverse indicating whether there are more
-	 * pages
-	 */
-	private boolean hasMore() {
+	@Override
+	public boolean hasMore() {
 		if ((this.currentPage + 1) > this.header.getNumberOfPages())
 			return false;
 		return true;

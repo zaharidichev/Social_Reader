@@ -16,6 +16,8 @@ import api.contentRetrival.types.ResultType;
  */
 public class ContentSearchRequest implements ISearchRequest {
 
+
+
 	private String requestAddress; // the generated search quarry that is going to be used to query the RESTFUL service
 	private String keyword; //the keyword of the search
 	private String sectionFilter; // a filter for sections
@@ -149,6 +151,31 @@ public class ContentSearchRequest implements ISearchRequest {
 	@Override
 	public String toString() {
 		return this.getURLAsText();
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((keyword == null) ? 0 : keyword.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContentSearchRequest other = (ContentSearchRequest) obj;
+		if (keyword == null) {
+			if (other.keyword != null)
+				return false;
+		} else if (!keyword.equals(other.keyword))
+			return false;
+		return true;
 	}
 
 }

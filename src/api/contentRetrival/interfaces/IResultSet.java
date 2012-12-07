@@ -20,7 +20,8 @@ public interface IResultSet {
 	 * Employs the same ideas as the getNextPage() but it updates the currenly
 	 * held data with the data from the previous page (if there is a previous
 	 * page)
-	 * @throws RestFulClientException 
+	 * 
+	 * @throws RestFulClientException
 	 */
 
 	public void getPrevPage() throws RestFulClientException;
@@ -29,7 +30,8 @@ public interface IResultSet {
 	 * Method that forwards to the next page by issuing a new search request and
 	 * updating the currently contained information within the result set with
 	 * the new results.
-	 * @throws RestFulClientException 
+	 * 
+	 * @throws RestFulClientException
 	 */
 	public void getNextPage() throws RestFulClientException;
 
@@ -42,11 +44,28 @@ public interface IResultSet {
 
 	/**
 	 * Returns a collection of {@link IResultItem} objects. THose object are the
-	 * ones currently held in the buffer od the {@link IResultSet} and
+	 * ones currently held in the buffer of the {@link IResultSet} and
 	 * technically correspond to a single page of results
 	 * 
 	 * @return {@link LinkedList}
 	 */
 	public LinkedList<IResultItem> getResultItems();
+
+	/**
+	 * Based on the header received by the initial request, this method
+	 * determines if there are less pages to be showed. That is, if a new
+	 * request can be issues with a page lower than the previous one
+	 * 
+	 * @return {@link Boolean}
+	 */
+	boolean hasLess();
+
+	/**
+	 * This method checks the current page and te avaialable pages and decides
+	 * whether there are more pages that can be displayed
+	 * 
+	 * @return
+	 */
+	boolean hasMore();
 
 }

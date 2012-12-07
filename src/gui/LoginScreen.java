@@ -13,6 +13,7 @@ import javax.swing.JToolBar;
 
 import model.GuardianReaderModel;
 import api.contentRetrival.impl.results.factories.ResultSetFactory;
+import api.contentRetrival.interfaces.IResultSetFactory;
 import api.restful.RESTFULContentClient;
 import api.restful.exceptions.RestFulClientException;
 import api.userDataPersistance.DBConnection;
@@ -107,7 +108,7 @@ public class LoginScreen extends JFrame {
 					//if successful, create a new main frame with the guardian model and the current connection
 					setVisible(false);
 					try {
-						ResultSetFactory factory = new ResultSetFactory();
+						IResultSetFactory factory = new ResultSetFactory();
 						new MainAppFrame(new GuardianReaderModel(factory), connection);
 					} catch (RestFulClientException e1) {
 						
@@ -132,7 +133,7 @@ public class LoginScreen extends JFrame {
 				try {
 					connection.addUser(name, passwd);
 				} catch (ExistingUserException e1) {
-					// if thre is alrady such user, notify the client
+					// if there is already such user, notify the client
 					successfulCreation = false;
 					new InfoForUser("The user is already existing");
 					user.setText("");

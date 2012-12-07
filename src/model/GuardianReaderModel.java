@@ -5,9 +5,9 @@ import java.util.Observable;
 
 import api.contentRetrival.impl.requests.ContentSearchRequest;
 import api.contentRetrival.impl.results.ResultSet;
-import api.contentRetrival.impl.results.factories.ResultSetFactory;
 import api.contentRetrival.interfaces.IResultItem;
 import api.contentRetrival.interfaces.IResultSet;
+import api.contentRetrival.interfaces.IResultSetFactory;
 import api.contentRetrival.interfaces.ISearchRequest;
 import api.restful.exceptions.RestFulClientException;
 
@@ -21,7 +21,7 @@ import api.restful.exceptions.RestFulClientException;
 public class GuardianReaderModel extends Observable {
 
 	private IResultSet results; //stores the result set
-	private ResultSetFactory factory; // stores the ResultSet Factory
+	private IResultSetFactory factory; // stores the ResultSet Factory
 
 	/**
 	 * Public constructor that creates the model and establishes any needed
@@ -30,7 +30,7 @@ public class GuardianReaderModel extends Observable {
 	 * 
 	 * @throws RestFulClientException
 	 */
-	public GuardianReaderModel(ResultSetFactory resultSetFactory)
+	public GuardianReaderModel(IResultSetFactory resultSetFactory)
 			throws RestFulClientException {
 		this.factory = resultSetFactory;
 		ISearchRequest request = new ContentSearchRequest(""); // get an empty search request
